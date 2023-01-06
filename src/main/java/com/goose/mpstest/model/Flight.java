@@ -1,7 +1,6 @@
 package com.goose.mpstest.model;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 

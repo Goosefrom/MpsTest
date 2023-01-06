@@ -1,14 +1,17 @@
 version: "3.9"
 
 services:
+  mongo_db:
+    container_name: mongo_db
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - 27017:27017
   way:
-    image: airplane-docker.jar
+    build: .
+    image: airplane-docker:latest
+    container_name: airplane_app
     ports:
       - 8080:8080
     depends_on:
       - mongo_db
-  mongo_db:
-    image: mongo:latest
-    restart: always
-    ports:
-      - 27017:27017

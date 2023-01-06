@@ -18,19 +18,13 @@ import java.util.Optional;
 @EnableScheduling
 public class Scheduler {
 
+    @Autowired
     private AirplaneRepository airplaneRepository;
 
-
+    @Autowired
     private PlaneCalculation planeCalculation;
 
-    @Autowired
-    public Scheduler(AirplaneRepository airplaneRepository,
-                     PlaneCalculation planeCalculation) {
-        this.airplaneRepository = airplaneRepository;
-        this.planeCalculation = planeCalculation;
-    }
-
-    @Scheduled(cron = "0 * * * * ?")
+    @Scheduled(cron = "30 * * * * ?")
     public void scheduleFirstFlight() throws Exception {
         WayPoint p1 = new WayPoint(0.0, 0.0, 0.0,0.0);
         WayPoint p2 = new WayPoint(1.1, 1.1, 1.1, 1.1);
@@ -41,7 +35,7 @@ public class Scheduler {
         calculate(optAirplane, wayPoints);
     }
 
-    @Scheduled(cron = "0 * * * * ?")
+    @Scheduled(cron = "30 * * * * ?")
     public void scheduleSecondFlight() throws Exception {
         WayPoint p1 = new WayPoint(1.0, 0.0, 3.0,0.0);
         WayPoint p2 = new WayPoint(1.1, 1.1, 1.1, 1.1);
@@ -55,7 +49,7 @@ public class Scheduler {
 
     }
 
-    @Scheduled(cron = "0 * * * * ?")
+    @Scheduled(cron = "30 * * * * ?")
     public void scheduleThirdFlight() throws Exception {
         WayPoint p1 = new WayPoint(8.0, 98.0, 2.0,0.0);
         WayPoint p2 = new WayPoint(1.1, 1.1, 1.1, 1.1);
@@ -75,9 +69,10 @@ public class Scheduler {
             Airplane airplane = optAirplane.get();
             List<Flight> flights = airplane.getFlights();
             int flightsNumber = flights.size();
-            System.out.println("Number of flights: " + flightsNumber);
+            System.out.println("Thread: " + Thread.currentThread().getName() + "; Number of flights: " + flightsNumber);
             for (Flight flight : flights) {
-                System.out.println("Flight N:" + flight.getNumber() +
+                System.out.println("Thread: " + Thread.currentThread().getName() +
+                        "; Flight N:" + flight.getNumber() +
                         " , flight time(s): " + flight.getPassedPoints().size());
             }
 
