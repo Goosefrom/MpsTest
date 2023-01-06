@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  way:
+    image: airplane-docker.jar
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo_db
+  mongo_db:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
