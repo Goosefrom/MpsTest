@@ -20,7 +20,8 @@ import static java.lang.Math.*;
 @Configuration
 public class PlaneCalculation {
 
-    public double[][] minAltitude = {{1, 1, 0, 0, 1, 2, 1, 1, 0 ,3}, {0, 1, 2, 3, 2, 1, 2, 1, 0, 0}};
+    public double[][] minAltitude = {{1, 1, 0, 0, 1, 2, 1, 1, 0 ,3},
+            {0, 1, 2, 3, 2, 1, 2, 1, 0, 0}};
 
     public List<TemporaryPoint> calculateRoute(AirplaneCharacteristics airplaneCharacteristics,
                                                List<WayPoint> wayPoints) throws Exception {
