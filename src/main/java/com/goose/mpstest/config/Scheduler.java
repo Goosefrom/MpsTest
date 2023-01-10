@@ -77,7 +77,7 @@ public class Scheduler {
             }
 
             List<TemporaryPoint> results = planeCalculation
-                    .calculateRoute(optAirplane.get().getAirplaneCharacteristics(), wayPoints);
+                    .calculateRoute(optAirplane.get().getCharacteristics(), wayPoints);
 
             Flight flight = new Flight((long) flights.size(), wayPoints, results);
             flights.add(flight);
